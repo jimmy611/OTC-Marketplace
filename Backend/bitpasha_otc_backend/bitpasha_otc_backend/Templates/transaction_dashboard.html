@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Transaction Dashboard</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Crypto</th>
+        <th>Buy/Sell</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in transactions %}
+        <tr>
+          <td>{{ transaction.crypto }}</td>
+          <td>{{ transaction.buy_sell }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.get_status_display }}</td>
+          <td>{{ transaction.created_at }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No transactions found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
